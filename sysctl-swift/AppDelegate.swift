@@ -3,7 +3,6 @@
 //  sysctl-swift
 //
 //  Created by Koan-Sin Tan on 11/19/16.
-//  Copyright © 2016 MediaTek. All rights reserved.
 //
 
 import UIKit
