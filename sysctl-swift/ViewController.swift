@@ -69,7 +69,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     validHW.append("\(sysctlHW[i].key): \(p)")
                     break;
                 case "int32x":
-                    var p = CInt()
+                    var p = CUnsignedInt()
                     sysctlbyname(sysctlHW[i].key, &p, &len, nil, 0);
                     print(sysctlHW[i].key, ":", String((p), radix: 16))
                     validHW.append("\(sysctlHW[i].key): \(String((p), radix: 16))")
