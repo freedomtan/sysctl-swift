@@ -8,6 +8,8 @@
 import UIKit
 
 var sysctl_hw = [
+    "kern.sched": "string",
+    "kern.bootargs": "string",
     "hw.activecpu": "int32",
     "hw.byteorder": "int32",
     "hw.cacheconfig": "uint64s",
@@ -121,7 +123,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var ret: Int32
         for i in 0...(sysctlHW.count-1) {
             ret = sysctlbyname(sysctlHW[i].key, nil, &len, nil, 0)
-            
+            print("return = ", ret);
+            if (sysctlHW[i].key == "kern.sched") {
+                print("kern.sched");
+                len = 5;
+                var p = [CChar](repeating: 0, count: Int(len))
+                ret = sysctlbyname(sysctlHW[i].key, &p, &len, nil, 0);
+                print("return = ", ret);
+                print(sysctlHW[i].key, ":", String(cString: p))
+            }
             if (ret == 0) {
                 switch(sysctlHW[i].value) {
                 case "int32":
